@@ -143,3 +143,36 @@ static void Main()
        else
           return "Protected Internal/Friend";
     }
+    
+    
+    
+    
+    
+    Assembly executing = Assembly.GetExecutingAssembly();
+
+            
+            Type[] types = executing.GetTypes();
+
+
+            foreach (var item in types)
+            {
+               
+                Console.WriteLine("Class : {0}", item.Name);
+
+               
+                MethodInfo[] methods = item.GetMethods();
+
+                foreach (var method in methods)
+                {
+                    
+                    Console.WriteLine("--> Method : {0}", method.Name);
+
+                    
+                    ParameterInfo[] parameters = method.GetParameters();
+                    foreach (var arg in parameters)
+                    {
+                       
+                        Console.WriteLine("----> Parameter : {0} Type : {1}",
+                                                arg.Name, arg.ParameterType);
+                    }
+                }
